@@ -1,0 +1,12 @@
+DECLARE
+    v_Id Number;
+BEGIN
+    IF apex_application.g_f01.count <> 0 THEN    
+        FOR i IN 1..apex_application.g_f01.count LOOP
+            v_Id := TO_NUMBER(NVL(apex_application.g_f01(i), 0));
+            UPDATE DGMS_ELIGIBLE_Balloting
+            SET QUALIFIED = :P383_QUALIFIED
+            WHERE ID = v_Id;
+        END LOOP;
+    END IF;
+END;
